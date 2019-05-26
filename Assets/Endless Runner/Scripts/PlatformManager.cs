@@ -11,6 +11,8 @@ public class PlatformManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _level3PlatformPrefabs;
     [SerializeField]
+    private GameObject Ground;
+    [SerializeField]
     private int _zedOffset;
     [SerializeField]
     private List<GameObject> _inactiveObjects = new List<GameObject>();
@@ -77,6 +79,7 @@ public class PlatformManager : MonoBehaviour
             }
             else if(level3 == true)
             {
+                Instantiate(Ground, new Vector3(0, -60f, _zedOffset), Quaternion.Euler(0, 0, 0));
                 for (int i = 0; i < Level3BossObjects.Count; i++)
                 {
                     _inactiveObjects.Add(Instantiate(Level3BossObjects[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
@@ -85,7 +88,6 @@ public class PlatformManager : MonoBehaviour
                 ShuffleList(_inactiveObjects);
                 moved = true;
             }
-
         }
 
         if(scoreManager.Score == scorelimit || boss.Health == 0)
@@ -148,6 +150,11 @@ public class PlatformManager : MonoBehaviour
             _inactiveObjects[spawnObject].SetActive(true);
             _inactiveObjects.RemoveAt(spawnObject);
             _zedOffset += 15;
+        }
+
+        if(level3 == true)
+        {
+            GameObject.FindGameObjectWithTag("Ground").transform.position = new Vector3(0, 0, _zedOffset);
         }
     }
 

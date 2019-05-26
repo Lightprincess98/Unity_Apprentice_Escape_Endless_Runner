@@ -31089,8 +31089,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level1: 1
-  level2: 0
-  level3: 0
+  level2: 1
+  level3: 1
 --- !u!1 &6935070299232891376
 GameObject:
   m_ObjectHideFlags: 0

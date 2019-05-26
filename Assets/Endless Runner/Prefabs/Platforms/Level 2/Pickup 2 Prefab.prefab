@@ -3804,7 +3804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level1: 0
   level2: 1
-  level3: 0
+  level3: 1
 --- !u!1 &2315099917908582763
 GameObject:
   m_ObjectHideFlags: 0
@@ -70971,6 +70971,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2315099917890584219}
     m_Modifications:
+    - target: {fileID: 585518905544562503, guid: 95e2e75b09fabeb4ca2be4cec8e9b1f6,
+        type: 3}
+      propertyPath: m_Name
+      value: Pickup
+      objectReference: {fileID: 0}
     - target: {fileID: 4396740533445151448, guid: 95e2e75b09fabeb4ca2be4cec8e9b1f6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -71025,11 +71030,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 585518905544562503, guid: 95e2e75b09fabeb4ca2be4cec8e9b1f6,
-        type: 3}
-      propertyPath: m_Name
-      value: Pickup
       objectReference: {fileID: 0}
     - target: {fileID: 841524066510277310, guid: 95e2e75b09fabeb4ca2be4cec8e9b1f6,
         type: 3}
