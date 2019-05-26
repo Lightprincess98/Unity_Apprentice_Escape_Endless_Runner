@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Destructible Floor 3 Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6895758084783079912, guid: 29fcde6f6f9b4c34399266e05e76ba4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6895758084783079919, guid: 29fcde6f6f9b4c34399266e05e76ba4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -401,6 +406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3397329954831942172, guid: 29fcde6f6f9b4c34399266e05e76ba4b,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29fcde6f6f9b4c34399266e05e76ba4b, type: 3}

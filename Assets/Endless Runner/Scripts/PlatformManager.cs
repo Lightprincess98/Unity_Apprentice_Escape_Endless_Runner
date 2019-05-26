@@ -7,15 +7,20 @@ public class PlatformManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _platformPrefabs;
     [SerializeField]
-    private GameObject[] _level2platformprefabs;
+    private GameObject[] _level2Platformprefabs;
     [SerializeField]
-    private GameObject[] _level3platformPrefabs;
+    private GameObject[] _level3PlatformPrefabs;
     [SerializeField]
     private int _zedOffset;
     [SerializeField]
     private List<GameObject> _inactiveObjects = new List<GameObject>();
     [SerializeField]
     private List<GameObject> _destructibleObjects = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> Level2BossObjects = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> Level3BossObjects = new List<GameObject>();
+
     private int spawnObject;
     private ScoreManager scoreManager;
     private bool moved = false;
@@ -50,13 +55,37 @@ public class PlatformManager : MonoBehaviour
     {
         if (scoreManager.Score == scorelimit - 50 && moved == false)
         {
-            for (int i = 0; i < _destructibleObjects.Count; i++)
+            if(level1 == true)
             {
-                _inactiveObjects.Add(Instantiate(_destructibleObjects[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
-                _destructibleObjects[i].SetActive(false);
+                for (int i = 0; i < _destructibleObjects.Count; i++)
+                {
+                    _inactiveObjects.Add(Instantiate(_destructibleObjects[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
+                    _destructibleObjects[i].SetActive(false);
+                }
+                ShuffleList(_inactiveObjects);
+                moved = true;
             }
-            ShuffleList(_inactiveObjects);
-            moved = true;
+            else if(level2 == true)
+            {
+                for (int i = 0; i < Level2BossObjects.Count; i++)
+                {
+                    _inactiveObjects.Add(Instantiate(Level2BossObjects[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
+                    Level2BossObjects[i].SetActive(false);
+                }
+                ShuffleList(_inactiveObjects);
+                moved = true;
+            }
+            else if(level3 == true)
+            {
+                for (int i = 0; i < Level3BossObjects.Count; i++)
+                {
+                    _inactiveObjects.Add(Instantiate(Level3BossObjects[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
+                    Level3BossObjects[i].SetActive(false);
+                }
+                ShuffleList(_inactiveObjects);
+                moved = true;
+            }
+
         }
 
         if(scoreManager.Score == scorelimit || boss.Health == 0)
@@ -68,10 +97,10 @@ public class PlatformManager : MonoBehaviour
             level2 = true;
             level3 = false;
             scoreManager.levelUp = true;
-            for(int i = 0; i < _level2platformprefabs.Length; i++)
+            for(int i = 0; i < _level2Platformprefabs.Length; i++)
             {
-                _inactiveObjects.Add(Instantiate(_level2platformprefabs[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
-                _level2platformprefabs[i].SetActive(false);
+                _inactiveObjects.Add(Instantiate(_level2Platformprefabs[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
+                _level2Platformprefabs[i].SetActive(false);
             }
         }
 
@@ -84,10 +113,10 @@ public class PlatformManager : MonoBehaviour
             level2 = false;
             level1 = false;
             scoreManager.levelUp = true;
-            for (int i = 0; i < _level3platformPrefabs.Length; i++)
+            for (int i = 0; i < _level3PlatformPrefabs.Length; i++)
             {
-                _inactiveObjects.Add(Instantiate(_level3platformPrefabs[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
-                _level3platformPrefabs[i].SetActive(false);
+                _inactiveObjects.Add(Instantiate(_level3PlatformPrefabs[i], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)));
+                _level3PlatformPrefabs[i].SetActive(false);
             }
         }
 
