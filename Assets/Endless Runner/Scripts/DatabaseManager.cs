@@ -13,22 +13,20 @@ public class DatabaseManager : MonoBehaviour
     public string ConnectionDatabaseName;
     public string ConnectionUsername;
     public string ConnectionPassword;
-    [Space(10)]
-    [Header("Insert Information")]
-    public string insertTableName;
-    public string InsertID;
-    public string InsertValue;
-    public string InsertName;
-    [Space(10)]
-    [Header("Select Information")]
-    public string selectTableName;
-    public string selectColumnName;
+
+    private ScoreManager scoreManager;
+    private int id;
+
     [Space(10)]
     public Text uiText;
+    public InputField uiInputField;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        id = 2;
+        scoreManager = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>();
         string connetionString = null;
         connetionString = "server=" + ConnectionServerName + ";database=" + ConnectionDatabaseName + ";uid=" + ConnectionUsername + ";pwd=" + ConnectionPassword;
         MySqlConnection conn = new MySqlConnection(connetionString);
@@ -41,12 +39,13 @@ public class DatabaseManager : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.Log("Connection failed to open");
+            Debug.Log("Connection Failed");
         }
     }
 
     public void InsertScore()
     {
+        id = UnityEngine.Random.Range(id, 9000);
         string connetionString = null;
         connetionString = "server=" + ConnectionServerName + ";database=" + ConnectionDatabaseName + ";uid=" + ConnectionUsername + ";pwd=" + ConnectionPassword;
         MySqlConnection conn = new MySqlConnection(connetionString);
@@ -55,7 +54,7 @@ public class DatabaseManager : MonoBehaviour
             Debug.Log("Starting Connection");
             conn.Open();
             Debug.Log("Inserting Into Database");
-            string sql = "INSERT INTO " + insertTableName + " VALUES(" + InsertID + ", " + InsertValue + ", " + InsertName + ")";
+            string sql = "INSERT INTO score VALUES('" + id + "', '" + scoreManager.Score + "', '" + uiInputField.text + "')";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
             Debug.Log("Score added");
@@ -64,7 +63,7 @@ public class DatabaseManager : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.Log("Debug not working");
+            Debug.Log(ex);
         }
     }
 
@@ -78,13 +77,22 @@ public class DatabaseManager : MonoBehaviour
             Debug.Log("Starting Connection");
             conn.Open();
             Debug.Log("Selecting Into Database");
-            string sql = "SELECT " + selectColumnName + " FROM " + selectTableName;
+            string sql = "SELECT Score_Num FROM score";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
+            int highScore = 0;
             while (rdr.Read())
             {
-                Debug.Log(rdr[0]);
-                uiText.text = "Highscore: " + rdr[0].ToString();
+                for (int i = 0; i < rdr.FieldCount; i++)
+                {
+                    Debug.Log(rdr[i]);
+                    int currentscore = Convert.ToInt32(rdr[i]);
+                    if(currentscore > highScore)
+                    {
+                        highScore = currentscore;
+                    }
+                }
+                uiText.text = "Highscore: " + highScore;
             }
 
             rdr.Close();

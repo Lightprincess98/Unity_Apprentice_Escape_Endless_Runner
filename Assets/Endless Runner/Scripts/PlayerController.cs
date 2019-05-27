@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public Text phaseText;
     public Text jumpText;
     public Text fireballText;
+    public AudioSource jumpAudio;
+    public AudioSource magicAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -66,12 +68,14 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && changingLane == false)
             {
                 _yVelocity = _jumpHeight;
+                jumpAudio.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.W) && canDash == true)
             {
                 StartCoroutine(Dash());
                 canDash = false;
+                magicAudio.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.Q) && canshootFire == true)
@@ -81,18 +85,21 @@ public class PlayerController : MonoBehaviour
                     Quaternion.identity);
                 fireballText.text = "Fireball:Not Ready";
                 canshootFire = false;
+                magicAudio.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.E) && canPhase == true)
             {
                 StartCoroutine(Phase());
                 canPhase = false;
+                magicAudio.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.S) && canJump == true)
             {
                 StartCoroutine(JumpHeight());
                 canJump = false;
+                magicAudio.Play();
             }
 
             if (_xVelocity == 5 || _xVelocity == -5)

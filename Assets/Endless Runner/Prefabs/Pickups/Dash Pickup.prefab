@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5038482299849258006, guid: 6f1c6ad2c97cb6f4ebf30a099cabf733,
         type: 3}
       propertyPath: m_Name
-      value: Sphere
+      value: Dash Pickup
       objectReference: {fileID: 0}
     - target: {fileID: 8126809965761833353, guid: 6f1c6ad2c97cb6f4ebf30a099cabf733,
         type: 3}
@@ -67,5 +67,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3470662986465847074, guid: 6f1c6ad2c97cb6f4ebf30a099cabf733,
+        type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 6683419203604007948}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f1c6ad2c97cb6f4ebf30a099cabf733, type: 3}
+--- !u!82 &6683419203604007948 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1228393055205109597, guid: 6f1c6ad2c97cb6f4ebf30a099cabf733,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605968487774806865}
+  m_PrefabAsset: {fileID: 0}

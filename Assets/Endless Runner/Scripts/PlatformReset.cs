@@ -30,6 +30,9 @@ public class PlatformReset : MonoBehaviour
     {
         Debug.Log("Making Kinematic or Dynamic");
         rb.isKinematic = false;
+        BossEnemy boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossEnemy>();
+        boss.audio.clip = boss.boss1Clip;
+        boss.audio.Play();
 
     }
 

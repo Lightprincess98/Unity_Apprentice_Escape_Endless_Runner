@@ -12,6 +12,8 @@ public class Pickup : MonoBehaviour
 
     public bool Dash;
 
+    public AudioSource audio;
+
     private PlayerController playerController;
     // Start is called before the first frame update
     void Start()
@@ -32,21 +34,25 @@ public class Pickup : MonoBehaviour
             if (Phase)
             {
                 playerController.setPhase();
+                audio.Play();
             }
 
             if (Jump)
             {
                 playerController.setJump();
+                audio.Play();
             }
 
             if (Fireball)
             {
                 playerController.setFire();
+                audio.Play();
             }
 
             if (Dash)
             {
                 playerController.setDash();
+                audio.Play();
             }
 
             this.gameObject.SetActive(false);

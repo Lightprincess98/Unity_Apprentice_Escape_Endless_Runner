@@ -7,6 +7,7 @@ public class UIInteraction : MonoBehaviour
 {
     public GameObject MainMenu;
     public GameObject ControlMenu;
+    public GameObject CreditsMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +24,21 @@ public class UIInteraction : MonoBehaviour
     {
         ControlMenu.SetActive(false);
         MainMenu.SetActive(true);
+        CreditsMenu.SetActive(false);
     }
 
     public void GoToControls()
     {
         ControlMenu.SetActive(true);
         MainMenu.SetActive(false);
+        CreditsMenu.SetActive(false);
+    }
+
+    public void GoToCredits()
+    {
+        ControlMenu.SetActive(false);
+        MainMenu.SetActive(false);
+        CreditsMenu.SetActive(true);
     }
 
     public void quit()

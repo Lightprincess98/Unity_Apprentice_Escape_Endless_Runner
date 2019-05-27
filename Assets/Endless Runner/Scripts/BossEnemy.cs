@@ -8,6 +8,10 @@ public class BossEnemy : MonoBehaviour
     private int _health = 100;
     public Text healthText;
     private ScoreManager scoreManager;
+    public AudioSource audio;
+    public AudioClip boss1Clip;
+    public AudioClip boss2clip;
+    public AudioClip boss3clip;
 
     // Start is called before the first frame update
     void Start()
